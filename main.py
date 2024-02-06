@@ -16,5 +16,5 @@ def draw(user_id:str,image_id:int,prompt:str):
     image_bytes = draw_by_DALLE(prompt)
     update_image(image_bytes,user_id,image_id)
     end=time.time()
-    return {"image":Image.open(image_bytes),
+    return {"image_info":Image.open(image_bytes),
             "time_consumption":f"{end-start:.2f}"}
