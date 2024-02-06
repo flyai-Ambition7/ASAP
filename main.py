@@ -1,7 +1,8 @@
 import time
 from PIL import Image
 from fastapi import FastAPI
-from draw_img import *
+from get_image import *
+from evaluate_image import evalulate_image
 from update import *
 
 app=FastAPI()
@@ -13,8 +14,16 @@ async def root():
 @app.get("/draw")
 def draw(user_id:str,image_id:int,prompt:str):
     start=time.time()
-    image_bytes = draw_by_DALLE(prompt)
-    update_image(image_bytes,user_id,image_id)
+    top_img,top_score = 0,0
+    for _ in range(5):
+        img = get_image_by_DALLE(prompt)
+        score = evalulate_image(prompt,img)
+        if top_score<score:
+            top_img, top_score = img, score
+            if score>0.99:
+                break
+    update_image(top_img,user_id,image_id)
     end=time.time()
-    return {"image_info":Image.open(image_bytes),
+    return {"img_info":Image.open(top_img),
+            "score":f"{top_score:.2f}",
             "time_consumption":f"{end-start:.2f}"}
