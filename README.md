@@ -11,4 +11,5 @@
      * DALL-E-3 ✅
      * SDXL
 
-※ .env 파일을 보안 상 이유로 github에 업로드하지 않았습니다. repo를 clone하고 main.py를 실행하면 오류가 발생할 거예요. 
+※ .env 파일을 보안 상 이유로 github에 업로드하지 않았습니다.   
+repo를 clone하고 main.py를 실행하면 오류가 발생할 거예요. 
