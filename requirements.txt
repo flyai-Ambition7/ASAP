@@ -1,0 +1,8 @@
+fastapi[all]
+pymongo
+openai
+diffusers
+accelerate 
+safetensors
+transformers
+setuptools
