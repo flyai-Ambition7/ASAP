@@ -80,28 +80,3 @@ def evalulate_image(prompt,img):
     generated_text=normalize(get_text_by_OCR(img))
     intended_text=normalize(get_intended_text(prompt))
     return calculate_similarity(generated_text,intended_text)
-
-# top_img, top_similarity = 0,0
-# # Loop until OCR result matches intended text or reach max_attempts
-# for attempt in range(6):
-#     print(f"\nAttempt {attempt+1}:")
-
-#     # Generate image using OpenAI DALL-E
-#     img = get_image_by_DALLE(prompt)
-#     generated_text = get_text_from_image(img)
-
-#     generated_text, intended_text = normalize(generated_text), normalize(intended_text)
-#     similarity=calculate_similarity(generated_text, intended_text)
-#     # Print the OCR result for each attempt
-#     print(f"OCR Result: {generated_text}")
-
-#     # Check if the normalized extracted text matches the normalized intended text
-#     if generated_text == intended_text:
-#         print("OCR result matches intended text:")
-#         print(generated_text)
-#         break
-#     else:
-#         if top_similarity<similarity:
-#             top_similarity=similarity
-#             top_img=img
-#         print("OCR result does not match intended text. Regenerating image...")
