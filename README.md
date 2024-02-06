@@ -7,7 +7,7 @@
    * fastapi에서 AI 파이프라인 실행
      * DALL-E-3 ✅
      * SDXL
-   * MongoDB와 연동한 fastapi에서 AI 파이프라인 실행
+   * fastapi에서 AI 파이프라인으로 MongoDB Update
      * DALL-E-3 ✅
      * SDXL
 
