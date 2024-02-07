@@ -6,3 +6,7 @@ accelerate
 safetensors
 transformers
 setuptools
+azure-cognitiveservices-vision-computervision
+nltk
+sentence_transformers
+torch==2.1.2
