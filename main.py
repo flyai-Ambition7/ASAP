@@ -1,8 +1,8 @@
 import time
 from PIL import Image
 from fastapi import FastAPI
-from get_image import *
-from evaluate_image import evalulate_image
+from draw_image import *
+from eval_image import evalulate_image
 from update import *
 
 app=FastAPI()
@@ -12,18 +12,23 @@ async def root():
     return {"message":"hello world"}
 
 @app.get("/draw")
-def draw(user_id:str,image_id:int,prompt:str):
+def draw(user_id:str,prompt:str):
     start=time.time()
-    top_img,top_score = 0,0
-    for _ in range(5):
-        img = get_image_by_DALLE(prompt)
+    DALLE_img_1st,DALLE_score_1st = 0,0
+    for _ in range(3):
+        img = draw_image_by_DALLE(prompt)
         score = evalulate_image(prompt,img)
-        if top_score<score:
-            top_img, top_score = img, score
+        if DALLE_score_1st<score:
+            DALLE_img_1st, DALLE_score_1st = img, score
             if score>0.99:
                 break
-    update_image(top_img,user_id,image_id)
+    SD_img=draw_image_by_SD(prompt)
+    DALLE_img=Image.open(DALLE_img_1st)
+    DALLE_img.save(f'DALLE_{int(start)}.jpg')
+    SD_img.save(f'SD_{int(start)}.jpg')
+    # update_image(DALLE_img_1st,user_id,start)
     end=time.time()
-    return {"img_info":Image.open(top_img),
-            "score":f"{top_score:.2f}",
+    return {"DALLE_img_info":Image.open(DALLE_img_1st),
+            "SD_img_info":SD_img,
+            "DALLE_score":f"{DALLE_score_1st:.2f}",
             "time_consumption":f"{end-start:.2f}"}
