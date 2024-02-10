@@ -6,7 +6,7 @@ from eval_image import evalulate_image
 from update import *
 
 app=FastAPI()
-
+BASE_PATH="samples"
 @app.get("/")
 async def root():
     return {"message":"hello world"}
@@ -14,21 +14,14 @@ async def root():
 @app.get("/draw")
 def draw(user_id:str,prompt:str):
     start=time.time()
-    DALLE_img_1st,DALLE_score_1st = 0,0
-    for _ in range(3):
-        img = draw_image_by_DALLE(prompt)
-        score = evalulate_image(prompt,img)
-        if DALLE_score_1st<score:
-            DALLE_img_1st, DALLE_score_1st = img, score
-            if score>0.99:
-                break
+    DALLE_img,DALLE_score=draw_filtered_image_by_DALLE(prompt)
     SD_img=draw_image_by_SD(prompt)
-    DALLE_img=Image.open(DALLE_img_1st)
-    DALLE_img.save(f'DALLE_{int(start)}.jpg')
-    SD_img.save(f'SD_{int(start)}.jpg')
-    # update_image(DALLE_img_1st,user_id,start)
+    DALLE_img.save(f'{BASE_PATH}/DALLE_{int(start)}.jpg')
+    SD_img.save(f'{BASE_PATH}/SD_{int(start)}.jpg')
+    # update_image(DALLE_img,user_id,start)
     end=time.time()
-    return {"DALLE_img_info":Image.open(DALLE_img_1st),
-            "SD_img_info":SD_img,
-            "DALLE_score":f"{DALLE_score_1st:.2f}",
+    return {
+            "DALLE_img_info":DALLE_img.size,
+            "SD_img_info":SD_img.size,
+            "DALLE_score":f"{DALLE_score:.2f}",
             "time_consumption":f"{end-start:.2f}"}

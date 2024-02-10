@@ -8,7 +8,7 @@ from diffusers import AutoPipelineForInpainting, DPMSolverMultistepScheduler
 from diffusers.utils import load_image
 from openai import OpenAI
 from PIL import Image # PIL 패키지에서 Image 클래스 불러오기
-import cv2
+from eval_image import evalulate_image
 import matplotlib.pyplot as plt
 from rembg import remove # rembg 패키지에서 remove 클래스 불러오기
 
@@ -30,21 +30,21 @@ def draw_image_by_DALLE(prompt):
 
 def draw_image_by_SD(prompt):
     # 이미지 경로
-    img_path = "sample.jpg"
+    img_path = "samples/sample.jpg"
     # 이미지 파일 불러오기
-    img_input = Image.open(img_path)
+    img_input = Image.open(img_path).resize((1024,1024))
 
     # PIL Image를 NumPy 배열로 변환
     out = np.array(remove(img_input))
     mask = (out[:, :, 3] == 0).astype(np.uint8)
     mask_img = Image.fromarray(mask * 255, mode='L')
-    pipe = AutoPipelineForInpainting.from_pretrained("diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
+    pipe = AutoPipelineForInpainting.from_pretrained("stabilityai/stable-diffusion-xl-refiner-1.0",
                                                     torch_dtype=torch.float16,
                                                     variant="fp16",
                                                     token=HF_TOKEN).to("cuda")
     pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
     pipe.to("cuda")
-    pos = "masterpiece, best quality"
+    pos = "masterpiece, best quality, background, decoration"
     neg = "worst, bad, (distorted:1.3), (deformed:1.3), (blurry:1.3), out of frame, duplicate"
     img_output = pipe(
         prompt=prompt+','+pos,
@@ -54,5 +54,17 @@ def draw_image_by_SD(prompt):
         num_inference_steps=35,
         strength=0.99,  # make sure to use `strength` below 1.0
         num_images_per_prompt=1
-    ).images
-    return img_output[0]
+    ).images[0]
+
+    return img_output
+
+def draw_filtered_image_by_DALLE(prompt):
+    DALLE_img_1st,DALLE_score_1st = 0,0
+    for _ in range(3):
+        img = draw_image_by_DALLE(prompt)
+        score = evalulate_image(prompt,img)
+        if DALLE_score_1st<score:
+            DALLE_img_1st, DALLE_score_1st = img, score
+            if score>0.99:
+                break
+    return (Image.open(DALLE_img_1st), DALLE_score_1st)
