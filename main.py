@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from draw_image import *
 from edit_image import *
 from eval_image import evalulate_image
-from update_db import *
+from db.update_db import *
 import cv2
 
 app=FastAPI()
