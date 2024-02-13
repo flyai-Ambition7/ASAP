@@ -3,7 +3,7 @@ from PIL import Image
 from fastapi import FastAPI
 from draw_image import *
 from eval_image import evalulate_image
-from update import *
+from update_db import *
 
 app=FastAPI()
 BASE_PATH="samples"
