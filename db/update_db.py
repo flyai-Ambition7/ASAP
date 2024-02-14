@@ -4,12 +4,12 @@ import datetime
 
 fs = GridFS(mongo_db)
 
-def update_image(image_bytes,user_id:str,image_id,isinput:bool=False):
+def update_image(image_bytes,user_id:str,times,isinput:bool=False):
     if isinput:
         mode=0
     else:
         mode=1
-    fs.put(image_bytes, filename=f'{user_id}_{image_id}_{mode}.jpg')
+    fs.put(image_bytes, filename=f'{user_id}_{times}_{mode}.jpg')
 
 def update_text(prompt,user_id):
     coll=mongo_db["text"]

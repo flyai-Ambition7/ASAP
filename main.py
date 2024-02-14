@@ -17,7 +17,7 @@ async def root():
 async def upload(user_id:str,prompt:str,input_img:UploadFile):
     start=time.time()
     img = await input_img.read()
-    update_image(img,user_id,int(start),"I")
+    update_image(img,user_id,int(start),True)
     update_text(prompt,user_id)
     end=time.time()
     return {
@@ -41,7 +41,7 @@ async def draw(user_id:str,prompt:str):
     DALLE_img,DALLE_acc=draw_filtered_image_by_DALLE(prompt)
     SD_img=draw_image_by_SD(prompt)
     img_output=await add_images(DALLE_img,SD_img)
-    file_id=await update_image(img_output,user_id,int(start),"O")
+    file_id=await update_image(img_output,user_id,int(start),False)
     end=time.time()
     return {
         "file_id":str(file_id),
