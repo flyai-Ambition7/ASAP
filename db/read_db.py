@@ -1,6 +1,6 @@
 from PIL import Image
 from io import BytesIO
-from db import client, mongo_db
+from db import *
 from gridfs import GridFS
 
 # mongo_db : mongodb 객체
@@ -8,18 +8,24 @@ from gridfs import GridFS
 # mongo_db.fs.files -> _id, filename, chunkSize, length, uploadDate
 
 fs = GridFS(mongo_db)
-chunk_table, meta_table = mongo_db["fs.chunks"], mongo_db["fs.files"]
-chunks, metas = [chunk for chunk in chunk_table.find()], [doc for doc in meta_table.find()]
+tolist = lambda tbl:[doc for doc in tbl.find()]
+img_chunk_tbl, img_meta_tbl, text_tbl  = mongo_db["fs.chunks"], mongo_db["fs.files"], mongo_db["text"]
 
-'''
-find(read) generated file by name
-'''
-# 1. name으로부터 file_id 찾기
-last_file_name=metas[-1]['filename']
-file_id = meta_table.find_one({"filename": last_file_name})['_id']
-# 2. file_id로부터 chunks 찾기
-chunks=chunk_table.find({"files_id":file_id})
-# 3. 이미지 출력
-img = b''.join(chunk['data'] for chunk in chunks)
-img_output = Image.open(BytesIO(img))
-img_output.show()  # 이미지를 보여줍니다.
+# # 1. filename으로 file_id 쿼리
+# last_file_name=metas[-1]['filename']
+# last_file_id = img_meta_tbl.find_one({"filename": last_file_name})['_id']
+# # 2. file_id로 chunks(이미지 데이터) 쿼리
+# chunks=img_chunk_tbl.find({"files_id":last_file_id})
+# # 3. 이미지 출력
+# img = b''.join(chunk['data'] for chunk in chunks)
+# img_output = Image.open(BytesIO(img))
+
+def get_prompt_from_db(tbl):
+    texts=tolist(tbl)
+    prompt=texts[-1]['prompt']
+    return prompt
+
+def get_image_name_from_db(tbl):
+    img_metas=tolist(tbl)
+    img_name=img_metas[-1]['filename']
+    return img_name
