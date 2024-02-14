@@ -9,8 +9,8 @@
    * SDXL-Inpainting ✅
    * OpenCV 합성 🔄
 # 3. FastAPI에서의 AI 파이프라인을 통한 MongoDB Update
-   * DALL-E-3 ✅
-   * OpenCV 합성
+   * Read
+   * Update : OpenCV 합성 이미지 -> MongoDB ✅
 
 ※ .env 파일을 보안 상 이유로 github에 업로드하지 않았습니다.   
 repo를 clone하고 main.py를 실행하면 오류가 발생할 거예요. 

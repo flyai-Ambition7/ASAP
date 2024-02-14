@@ -12,7 +12,6 @@ from eval_image import evalulate_image
 import matplotlib.pyplot as plt
 from rembg import remove # rembg 패키지에서 remove 클래스 불러오기
 
-
 load_dotenv(verbose=True)
 OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
 HF_TOKEN=os.getenv("HF_TOKEN")
