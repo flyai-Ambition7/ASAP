@@ -27,15 +27,14 @@ def draw_image_by_DALLE(prompt):
     image_url=response.data[0].url
     return BytesIO(requests.get(image_url).content)
 
-def draw_image_by_SD(prompt):
-    # 이미지 경로
-    img_path = "samples/sample.jpg"
+def draw_image_by_SD(img,prompt):
+
     # 이미지 파일 불러오기
-    img_input = Image.open(img_path).resize((1024,1024))
+    img_input = img.resize((1024,1024))
 
     # PIL Image를 NumPy 배열로 변환
-    out = np.array(remove(img_input))
-    mask = (out[:, :, 3] == 0).astype(np.uint8)
+    img_rmbg = np.array(remove(img_input))
+    mask = (img_rmbg[:, :, 3] == 0).astype(np.uint8)
     mask_img = Image.fromarray(mask * 255, mode='L')
     pipe = AutoPipelineForInpainting.from_pretrained("stabilityai/stable-diffusion-xl-refiner-1.0",
                                                     torch_dtype=torch.float16,
@@ -45,6 +44,7 @@ def draw_image_by_SD(prompt):
     pipe.to("cuda")
     pos = "masterpiece, best quality, background, decoration"
     neg = "worst, bad, (distorted:1.3), (deformed:1.3), (blurry:1.3), out of frame, duplicate"
+    generator = [torch.Generator(device="cuda").manual_seed(0) for _ in range(2)]
     img_output = pipe(
         prompt=prompt+','+pos,
         negative_prompt=neg,
@@ -52,8 +52,9 @@ def draw_image_by_SD(prompt):
         mask_image=mask_img,
         num_inference_steps=35,
         strength=0.99,  # make sure to use `strength` below 1.0
-        num_images_per_prompt=1
-    ).images[0]
+        num_images_per_prompt=2,
+        generator=generator
+    ).images[1]
 
     return img_output
 
