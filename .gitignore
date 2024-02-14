@@ -2,4 +2,4 @@ __pycache__
 venv/
 .env
 delete.py
-read.py
+temp.py

@@ -27,15 +27,14 @@ def draw_image_by_DALLE(prompt):
     image_url=response.data[0].url
     return BytesIO(requests.get(image_url).content)
 
-def draw_image_by_SD(prompt):
-    # 이미지 경로
-    img_path = "samples/sample.jpg"
+def draw_image_by_SD(img,prompt):
+
     # 이미지 파일 불러오기
-    img_input = Image.open(img_path).resize((1024,1024))
+    img_input = img.resize((1024,1024))
 
     # PIL Image를 NumPy 배열로 변환
-    out = np.array(remove(img_input))
-    mask = (out[:, :, 3] == 0).astype(np.uint8)
+    img_rmbg = np.array(remove(img_input))
+    mask = (img_rmbg[:, :, 3] == 0).astype(np.uint8)
     mask_img = Image.fromarray(mask * 255, mode='L')
     pipe = AutoPipelineForInpainting.from_pretrained("stabilityai/stable-diffusion-xl-refiner-1.0",
                                                     torch_dtype=torch.float16,
