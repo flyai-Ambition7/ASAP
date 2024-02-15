@@ -27,5 +27,5 @@ def read_infos_from_db(img_data_tbl,img_meta_tbl,text_tbl):
     prompt=get_prompt_from_db(text_tbl)
     return img_input, img_file_name, prompt
 
-img_result=get_img_from_db(img_chunk_tbl,img_meta_tbl)
-img_result.show()
+# img_result=get_img_from_db(img_chunk_tbl,img_meta_tbl)
+# img_result.show()

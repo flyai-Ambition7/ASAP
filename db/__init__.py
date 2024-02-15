@@ -3,13 +3,16 @@ from dotenv import load_dotenv
 import os
 from gridfs import GridFS
 
+def get_env(env_list):
+    return [os.getenv(env_var) for env_var in env_list]
+
 load_dotenv(verbose=True)
-HOST = os.getenv("HOST")
-PORT = os.getenv("PORT")
-DB_NAME = os.getenv("DB_NAME")
-IMAGE_FILE_TABLE_NAME = os.getenv("IMAGE_FILE_TABLE_NAME")
-IMAGE_META_TABLE_NAME = os.getenv("IMAGE_META_TABLE_NAME")
-TEXT_TABLE_NAME = os.getenv("TEXT_TABLE_NAME")
+HOST, PORT, DB_NAME, IMAGE_FILE_TABLE_NAME, IMAGE_META_TABLE_NAME, TEXT_TABLE_NAME = get_env(["HOST", 
+                                                                                              "PORT", 
+                                                                                              "DB_NAME", 
+                                                                                              "IMAGE_FILE_TABLE_NAME", 
+                                                                                              "IMAGE_META_TABLE_NAME", 
+                                                                                              "TEXT_TABLE_NAME"])
 
 client = MongoClient(HOST,int(PORT))
 db = client[DB_NAME]
