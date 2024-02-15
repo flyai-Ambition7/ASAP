@@ -17,6 +17,4 @@ HOST, PORT, DB_NAME, IMAGE_FILE_TABLE_NAME, IMAGE_META_TABLE_NAME, TEXT_TABLE_NA
 client = MongoClient(HOST,int(PORT))
 db = client[DB_NAME]
 fs = GridFS(db)
-img_chunk_tbl=db[IMAGE_FILE_TABLE_NAME]
-img_meta_tbl=db[IMAGE_META_TABLE_NAME]
-text_tbl=db[TEXT_TABLE_NAME]
+img_chunk_tbl, img_meta_tbl, text_tbl = db[IMAGE_FILE_TABLE_NAME], db[IMAGE_META_TABLE_NAME], db[TEXT_TABLE_NAME]
