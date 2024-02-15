@@ -1,5 +1,4 @@
 import time
-from PIL import Image
 from fastapi import FastAPI, UploadFile
 from draw_image import *
 from edit_image import *
