@@ -57,12 +57,11 @@ async def draw():
     user_id = img_file_name.split('_')[0]
     DALLE_img, DALLE_acc = draw_filtered_image_by_DALLE(text_prompt)
     SD_img = draw_image_by_SD(img_input,image_prompt)
-    SD_img.show()
-    # img_output = add_images(DALLE_img,SD_img)
-    # update_image_to_db(img_output,
-    #                    user_id,
-    #                    upload_time=int(start),
-    #                    isinput=False)
+    img_output = add_images(DALLE_img,SD_img)
+    update_image_to_db(img_output,
+                       user_id,
+                       upload_time=int(start),
+                       isinput=False)
     end=time.time()
     return {
         "DALLE_accuracy":f"{DALLE_acc:.2f}",
