@@ -12,6 +12,7 @@ def add_images(text_img,bg_img):
 
     src, dst = text_img, bg_img
     img_result = cv2.copyTo(src, mask, dst)
+    img_result = cv2.cvtColor(img_result, cv2.COLOR_BGR2RGB)
     img_bytes = cv2.imencode('.jpg', img_result)[1].tobytes()
     return img_bytes
 
