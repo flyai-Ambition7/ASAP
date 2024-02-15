@@ -43,7 +43,6 @@ async def read_img():
     start = time.time()
     img_output=get_img_from_db(img_chunk_tbl,img_meta_tbl)
     img_output.show()
-    img_output.close()
     end=time.time()
     return {
         "img_size":img_output.size,
@@ -51,7 +50,7 @@ async def read_img():
     }
 
 @app.post("/draw")
-async def draw():
+def draw():
     start=time.time()
     img_input, img_file_name, text_prompt, image_prompt = read_infos_from_db(img_chunk_tbl,img_meta_tbl,text_tbl)
     user_id = img_file_name.split('_')[0]
