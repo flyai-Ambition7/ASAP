@@ -37,9 +37,9 @@ def draw_image_by_SD(img,prompt):
     mask = (img_rmbg[:, :, 3] == 0).astype(np.uint8)
     mask_img = Image.fromarray(mask * 255, mode='L')
     pipe = AutoPipelineForInpainting.from_pretrained("stabilityai/stable-diffusion-xl-refiner-1.0",
-                                                    torch_dtype=torch.float16,
-                                                    variant="fp16",
-                                                    token=HF_TOKEN).to("cuda")
+                                                     torch_dtype=torch.float16,
+                                                     variant="fp16",
+                                                     token=HF_TOKEN).to("cuda")
     pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
     pipe.to("cuda")
     pos = "masterpiece, best quality, background, decoration"
