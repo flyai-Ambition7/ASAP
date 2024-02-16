@@ -27,7 +27,6 @@ def read_infos_from_db(img_data_tbl,img_meta_tbl,text_tbl,isinput:bool):
         metas=[doc for doc in img_meta_tbl.find() if '0.jpg' in doc['filename']]
     else:
         metas=[doc for doc in img_meta_tbl.find() if '1.jpg' in doc['filename']]
-    metas=read_docs(img_meta_tbl)
     latest_meta=metas[-1]
     img_file_name, img_file_id = latest_meta['filename'], latest_meta['_id']
     img_chunks=img_data_tbl.find({"files_id":img_file_id})

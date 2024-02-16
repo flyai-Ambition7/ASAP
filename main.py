@@ -30,7 +30,7 @@ async def upload(user_id:str,text_prompt:str,bg_prompt:str,img_input:UploadFile)
 @app.get("/read_text")
 async def read_text():
     start = time.time()
-    _, _, text_prompt, bg_prompt = read_infos_from_db(img_chunk_tbl,img_meta_tbl,text_tbl,True)
+    text_prompt, bg_prompt = read_latest_prompts_from_db(text_tbl)
     end=time.time()
     return {
         "text_prompt":text_prompt,
@@ -39,10 +39,11 @@ async def read_text():
     }
 
 @app.get("/read_img")
-async def read_img():
+async def read_img(isinput:bool):
     start = time.time()
-    img_output=read_latest_img_from_db(img_chunk_tbl,img_meta_tbl,True)
+    img_output=read_latest_img_from_db(img_chunk_tbl,img_meta_tbl,isinput)
     img_output.show()
+    img_output.save('sample_output.jpg')
     end=time.time()
     return {
         "img_size":img_output.size,
@@ -52,7 +53,7 @@ async def read_img():
 @app.post("/draw")
 def draw():
     start=time.time()
-    img_input, img_file_name, text_prompt, image_prompt = read_infos_from_db(img_chunk_tbl,img_meta_tbl,text_tbl,True)
+    img_input, img_file_name, text_prompt, image_prompt = read_infos_from_db(img_chunk_tbl,img_meta_tbl,text_tbl,False)
     user_id = img_file_name.split('_')[0]
     DALLE_img, DALLE_acc = draw_filtered_image_by_DALLE(text_prompt)
     SD_img = draw_image_by_SD(img_input,image_prompt)
