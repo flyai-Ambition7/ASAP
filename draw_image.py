@@ -43,8 +43,8 @@ def draw_image_by_SD(img,prompt):
     pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
     pipe.to("cuda")
     pos = "masterpiece, best quality, background, decoration"
-    neg = "worst, bad, (distorted:1.3), (deformed:1.3), (blurry:1.3), out of frame, duplicate"
-    generator = [torch.Generator(device="cuda").manual_seed(0) for _ in range(2)]
+    neg = "worst, bad, (distorted:1.3), (deformed:1.3), (blurry:1.3), out of frame, duplicate, (text:1.3), (render:1.3)"
+    generator = [torch.Generator(device="cuda").manual_seed(i) for i in range(2)]
     img_output = pipe(
         prompt=prompt+','+pos,
         negative_prompt=neg,
@@ -55,8 +55,7 @@ def draw_image_by_SD(img,prompt):
         num_images_per_prompt=2,
         generator=generator
     ).images[1]
-
-    return img_output
+    return Image.fromarray(np.array(img_output))
 
 def draw_filtered_image_by_DALLE(prompt):
     DALLE_img_1st,DALLE_score_1st = 0,0
