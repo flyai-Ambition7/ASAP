@@ -2,7 +2,6 @@ import time
 import re
 from dotenv import load_dotenv
 import os
-from draw_image import *
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
 from msrest.authentication import CognitiveServicesCredentials
