@@ -3,3 +3,5 @@ venv/
 .env
 delete.py
 temp.py
+Dockerfile
+gunicorn.conf.py

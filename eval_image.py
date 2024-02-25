@@ -17,9 +17,6 @@ OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
 AZURE_SUBSCRIPTION_KEY=os.getenv("AZURE_SUBSCRIPTION_KEY")
 AZURE_ENDPOINT=os.getenv("AZURE_ENDPOINT")
 
-nltk.download('punkt')
-nltk.download('wordnet')
-model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
 
 # Function to perform OCR using Azure Computer Vision
 def get_text_by_OCR(image_data):
@@ -54,6 +51,9 @@ def normalize(text):
 
 # 문장 전처리 함수
 def embed_text(sentence):
+    nltk.download('punkt')
+    nltk.download('wordnet')
+    model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
     # 소문자 변환
     sentence = sentence.lower()
     # 토큰화
