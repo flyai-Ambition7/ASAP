@@ -5,7 +5,6 @@ from edit_image import add_images
 from eval_image import evalulate_image
 from db.update_db import update_text_to_db, update_image_to_db
 from db.read_db import *
-import numpy as np
 
 app=FastAPI()
 BASE_PATH="samples"
@@ -43,7 +42,7 @@ async def read_img(isinput:bool):
     start = time.time()
     img_output=read_latest_img_from_db(img_chunk_tbl,img_meta_tbl,isinput)
     img_output.show()
-    img_output.save('sample_output.jpg')
+    # img_output.save('sample_output.jpg')
     end=time.time()
     return {
         "img_size":img_output.size,
@@ -51,12 +50,14 @@ async def read_img(isinput:bool):
     }
 
 @app.post("/draw")
-def draw():
+async def draw():
     start=time.time()
-    img_input, img_file_name, text_prompt, image_prompt = read_infos_from_db(img_chunk_tbl,img_meta_tbl,text_tbl,False)
+    img_input, img_file_name, text_prompt, image_prompt = read_infos_from_db(img_chunk_tbl,img_meta_tbl,text_tbl,True)
     user_id = img_file_name.split('_')[0]
     DALLE_img, DALLE_acc = draw_filtered_image_by_DALLE(text_prompt)
+    DALLE_img.save('DALLE_img.jpg')
     SD_img = draw_image_by_SD(img_input,image_prompt)
+    SD_img.save('SD_img.jpg')
     img_output = add_images(DALLE_img,SD_img)
     update_image_to_db(img_output,
                        user_id,
