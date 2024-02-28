@@ -59,7 +59,7 @@ def draw_image_by_SD(img,prompt):
 
 def draw_filtered_image_by_DALLE(prompt):
     DALLE_img_1st,DALLE_score_1st = 0,0
-    for _ in range(2):
+    for _ in range(3):
         img = draw_image_by_DALLE(prompt)
         acc = evalulate_image(prompt,img)
         if DALLE_score_1st<acc:
