@@ -10,12 +10,12 @@
 * [Microsoft Azure, OCR](https://azure.microsoft.com/ko-kr/products/ai-services/ai-vision) : 이미지로부터 텍스트를 추출 
 
 # 2. AI-server
-* workstaion : Azure Virtual Machine(nvidia, T4 GPU)
+* workstaion : Azure Virtual Machine (Nvidia, T4 GPU)
 * server-development
-  * DB read & update with AI-pipeline
-  * MongoDB, FastAPI
+  * read & update DB with AI-pipeline
+  * `MongoDB`, `FastAPI`
 * test
   * check client↔server connection 
-  * ngrok 
+  * `ngrok` 
 
 ※ .env 파일은 보안상의 이유로 github에 업로드하지 않았습니다.
