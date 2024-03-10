@@ -1,16 +1,21 @@
 <img src="https://github.com/jodog0412/ASAP_AI/assets/83653380/9b4717b7-07ef-4af8-be24-19a2a76abfaa" width="60%" height="60%">  
 
-# 1. AI Server Workstation 구축 ✅
-   * Azure VM 설치 ✅
-   * Azure VM 환경설정 ✅
-# 2. FastAPI에서의 AI 파이프라인 실행 ✅
-   * DALL-E-3 ✅
-   * DALL-E-3+OCR ✅
-   * SDXL-Inpainting ✅
-   * OpenCV 합성 🔄
-# 3. FastAPI에서의 AI 파이프라인을 통한 MongoDB Update
-   * Read : MongoDB -> 프롬프트, 사용자 입력 이미지 ✅
-   * Update : OpenCV 합성 이미지 -> MongoDB ✅
+# 1. AI-pipeline
+## 1) text2img
+* [Stability AI, SDXL-Refiner](https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0) : 높은 품질의 디테일한 이미지 생성 
+* [OpenAI, DALL-E-3](https://openai.com/dall-e-3) : 빠른 생성 속도, 텍스트 이미지 생성 가능
+## 2) text-embedding
+* [all-mpnet-base-v2](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) : 텍스트 임베딩 → 문장 간의 cosine-similarity 측정 가능
+## 3) OCR(Optical Character Recognition)
+* [Microsoft Azure, OCR](https://azure.microsoft.com/ko-kr/products/ai-services/ai-vision) : 이미지로부터 텍스트를 추출 
 
-※ .env 파일을 보안 상 이유로 github에 업로드하지 않았습니다.   
-repo를 clone하고 바로 main.py를 실행하면 오류가 발생할 거예요. 
+# 2. AI-server
+* workstaion : Azure Virtual Machine(nvidia, T4 GPU)
+* server-development
+  * DB read & update with AI-pipeline
+  * MongoDB, FastAPI
+* test
+  * check client↔server connection 
+  * ngrok 
+
+※ .env 파일은 보안상의 이유로 github에 업로드하지 않았습니다.
