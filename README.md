@@ -2,8 +2,12 @@
 
 # 1. AI-pipeline
 ## 1) text2img
-* [Stability AI, SDXL-Refiner](https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0) : 높은 품질의 디테일한 이미지 생성 
-* [OpenAI, DALL-E-3](https://openai.com/dall-e-3) : 빠른 생성 속도, 텍스트 이미지 생성 가능
+* [SDXL-Refiner](https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0)
+  * 2023, Stability AI
+  * 높은 품질의 디테일한 이미지 생성 
+* [DALL-E-3](https://openai.com/dall-e-3)
+  * 2023, OpenAI
+  * 빠른 생성 속도, 텍스트 이미지 생성 가능
 ## 2) text-embedding
 * [all-mpnet-base-v2](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) : 텍스트 임베딩 → 문장 간의 cosine-similarity 측정 가능
 ## 3) OCR(Optical Character Recognition)
