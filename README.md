@@ -11,6 +11,8 @@
 ## 2) text-accuracy-inspection
 * [all-mpnet-base-v2](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) : 텍스트 임베딩
 * [Microsoft Azure OCR](https://azure.microsoft.com/ko-kr/products/ai-services/ai-vision) : 이미지로부터 텍스트 추출
+     
+### 🔄 process
 1. `Microsoft Azure OCR` → 생성된 이미지에서 텍스트를 추출 
 2. `all-mpnet-base-v2` → target_text, generated_text를 임베딩
 3. cosine similarity → 두 embedded_text 사이의 유사도 계산
