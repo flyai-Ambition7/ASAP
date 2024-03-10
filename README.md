@@ -11,7 +11,7 @@
 ## 2) text-embedding
 * [all-mpnet-base-v2](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) : 텍스트 임베딩 → 문장 간의 cosine-similarity 측정 가능
 ## 3) OCR(Optical Character Recognition)
-* [Microsoft Azure, OCR](https://azure.microsoft.com/ko-kr/products/ai-services/ai-vision) : 이미지로부터 텍스트를 추출 
+* [Microsoft Azure OCR](https://azure.microsoft.com/ko-kr/products/ai-services/ai-vision) : 이미지로부터 텍스트를 추출 
 
 # 2. AI-server
 * 워크스테이션 : Azure Virtual Machine (Nvidia, T4 GPU)
