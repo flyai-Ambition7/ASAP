@@ -23,7 +23,23 @@
   
 ## 📅 개발 기간
 2024.01.02 ~ 2024.02.28  
-[세부 진행사항](https://www.notion.so/b684c938f2414004b22f4a29eef31eaa?v=8b84008e2e6747468475785f07acff46)
+### [세부 일정]
+
+2024.01.02 ~ 2024.01.29 
+- 프로젝트 기획 및 설계
+- AI Process 설계
+- UI/UX 설계
+<br></br>
+
+2024.01.29 ~ 2024.02.28
+- API 명세서, DB 설계
+- 프론트엔드 개발
+- 백엔드 개발
+- 클라우드 개발
+- MVP 구축 및 테스트
+- PPT, 영상 제작, 발표
+  
+
   <br></br>
   
 ## 🔧 기술 스택
@@ -43,6 +59,10 @@
 ### AI
 <div>
   <img src="https://img.shields.io/badge/openai-412991?style=for-the-badge&logo=OpenAI&logoColor=white">
+</div>
+
+### Image Processing
+<div>
   <img src="https://img.shields.io/badge/opencv-5C3EE8?style=for-the-badge&logo=OpenCV&logoColor=white">
 </div>
   <br></br>
