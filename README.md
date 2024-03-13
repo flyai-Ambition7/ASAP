@@ -47,7 +47,7 @@
 </div>
   <br></br>
   
-## 구현 기능
+## 🐣 구현 기능
 
 ### 1. GPT를 이용한 홍보문구 생성
 <img src="./images/flow/text_generate.png" width="600" height="300">
@@ -62,7 +62,7 @@
 <img src="./images/flow/image_synthesize.png" width="600" height="300">
 <br></br>
 
-## 화면 구성
+## 🎨 화면 구성
 <img src="./images/ui/슬라이드6.PNG" width="700" height="400">
 <img src="./images/ui/슬라이드7.PNG" width="700" height="400">
 <img src="./images/ui/슬라이드8.PNG" width="700" height="400">
@@ -76,14 +76,14 @@
 <img src="./images/ui/슬라이드16.PNG" width="700" height="400">
 
 ## 기대효과 및 활용방안  
-### ESG  
+### 🍃 ESG  
 - 소상공인 홍보물 제작 지원을 통한 지역경제 활성화
 - 공익 캠페인, 국가 등에 홍보물 제작에 지원해 줌으로써 사회 메지 전달이나 특산물 홍보에 기여  
 
-### 비즈니스 모델 
+### 💰 비즈니스 모델 
 - 인쇄 업체나 옥외광고 업체와 제휴를 맺어 소비자에게 또 하나의 편리한 서비스 프로세스 제공
 - 홍보 디자인을 활용할 수 있는 모든 업체와 상호 보완적인 혜택 마련  
   
-### 확장성  
+### 🦄 확장성  
 - 사용자로부터 결과물에 대한 피드백을 받아 다음 생성에서 더 높은 퀄리티와 품직을 내도록 AI모델 성능을 개선
 - 영상을 자동 생성해주는 API를 이용하여 유튜브 쇼츠 형태로 확장  
