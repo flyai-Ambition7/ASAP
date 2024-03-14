@@ -1,0 +1,14 @@
+fastapi[all]
+pymongo
+openai
+diffusers
+accelerate 
+safetensors
+transformers
+setuptools
+azure-cognitiveservices-vision-computervision
+nltk
+opencv-python
+rembg
+matplotlib
+sentence-transformers
