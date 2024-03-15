@@ -70,30 +70,30 @@
 ## 🐣 구현 기능
 
 ### 1. GPT를 이용한 홍보문구 생성
-<img src="./images/flow/text_generate.png" width="600" height="300">
+<img src="./documents/flow/text_generate.png" width="600" height="300">
 
 ### 2. Dalle, OCR을 이용한 텍스트 이미지 생성 및 정확도 계산
-<img src="./images/flow/text_generate2.png" width="600" height="300">
+<img src="./documents/flow/text_generate2.png" width="600" height="300">
   
 ### 3. OpenCV, Stable Diffusion을 이용한 배경 이미지 생성
-<img src="./images/flow/image_generate.png" width="600" height="300">
+<img src="./documents/flow/image_generate.png" width="600" height="300">
   
 ### 4. OpenCV를 이용한 마스킹 처리 및 이미지 합성
-<img src="./images/flow/image_synthesize.png" width="600" height="300">
+<img src="./documents/flow/image_synthesize.png" width="600" height="300">
 <br></br>
 
 ## 🎨 화면 구성
-<img src="./images/ui/슬라이드6.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드7.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드8.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드9.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드10.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드11.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드12.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드13.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드14.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드15.PNG" width="700" height="400">
-<img src="./images/ui/슬라이드16.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드6.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드7.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드8.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드9.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드10.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드11.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드12.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드13.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드14.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드15.PNG" width="700" height="400">
+<img src="./documents/ui/슬라이드16.PNG" width="700" height="400">
 
 ## 기대효과 및 활용방안  
 ### 🍃 ESG  
