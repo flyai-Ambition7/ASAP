@@ -1,6 +1,8 @@
 # 생성형 AI 기반 홍보물 제작 서비스
 ### [SKT FLY AI Challenger 4기] 패기 7조 ASAP 프로젝트 
 
+https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003084004
+
 <p align="center">
   <br>
   <img src="./documents/service_video.gif" width="640" height="360">
